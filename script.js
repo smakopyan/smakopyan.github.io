@@ -50,20 +50,13 @@ async function loadAirData() {
 function renderPMChart(data) {
     const ctx = document.getElementById('pmChart').getContext('2d');
     
-    // Показываем спиннер
     ctx.canvas.innerHTML = '<div class="spinner-border text-primary" role="status"></div>';
 
-    // Проверяем данные
     if (!data || data.length === 0) {
         console.error('Нет данных для графика');
         ctx.canvas.innerHTML = '<p class="text-danger">Нет данных для отображения</p>';
         return;
     }
-
-    // Удаляем предыдущий график
-    // if (window.pmChart) window.pmChart.destroy();
-
-    // Группируем данные по дням
     const dailyData = {};
     data.forEach(item => {
         const dateStr = item[2].toLocaleDateString('ru-RU');
@@ -74,17 +67,14 @@ function renderPMChart(data) {
         dailyData[dateStr].count++;
     });
 
-    // Подготавливаем данные
     const labels = Object.keys(dailyData);
     const pm25Values = labels.map(date => {
         const sum = dailyData[date].pm25.reduce((a, b) => a + b, 0);
         return sum / dailyData[date].count;
     });
 
-    // Очищаем спиннер
     ctx.canvas.innerHTML = '';
 
-    // Создаем график
     window.pmChart = new Chart(ctx, {
         type: 'line',
         data: {
@@ -225,7 +215,7 @@ function updateCurrentStats(data) {
     const tenDaysAgo = new Date(now.setDate(now.getDate() - 10)).toISOString();
 
     const citiesData = data.reduce((acc, row) => {
-        const city = row[1]; // Предполагаем, что город находится во втором элементе массива
+        const city = row[1]; 
         if (!acc[city]) {
             acc[city] = [];
         }
