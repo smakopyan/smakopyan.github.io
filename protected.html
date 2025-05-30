@@ -1,0 +1,653 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Project Documentation</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container" id="content">
+        <button class="btn btn-danger mb-4" onclick="logout()">Выйти</button>
+        
+        <h1>Документация проекта</h1>
+        <div class="accordion" id="mainAccordion">
+       
+        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+        <div class="row row-cols-1 row-cols-md-2 g-4">
+            <div class="col">
+                <div class="card h-100">
+                    <div class="card-body">
+                        <h5 class="card-title">Среднее состояние воздуха за последние 10 дней:</h5>
+                        <div id="currentStats" class="text-center py-3">
+                            <div class="spinner-border text-primary" role="status">
+                                <span class="visually-hidden">Загрузка...</span>
+                            </div>
+                        </div>
+                        <div class="card-footer bg-transparent">
+                            <small class="text-muted" id="lastUpdate"></small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            </div>
+            <div class="row row-cols-1 row-cols-md-3 g-4" id="citiesStats">
+            </div>
+
+            <div class="row mt-5">
+            <div class="col-md-8">
+                <div class="card mb-4">
+                    <div class="card-body">
+                        <canvas id="pmChart" height="250"></canvas>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card">
+                    <div class="card-header">Статистика качества воздуха</div>
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table class="table table-hover">
+                                <thead>
+                                    <tr>
+                                        <th>Город</th>
+                                        <th>Средний PM2.5</th>
+                                        <th>Макс. PM2.5</th>
+                                        <th>Темп.</th>
+                                        <th>Влажн.</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="statsTableBody">
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="alert alert-info mt-3">
+                            <small>
+                                <strong>PM2.5:</strong> Частицы диаметром ≤2.5 микрон<br>
+                                <strong>Норма:</strong> ≤25 μg/m³ (ВОЗ)
+                            </small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="headingGoals">
+                    <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseGoals">
+                        Цели
+                    </button>
+                </h2>
+                <div id="collapseGoals" class="accordion-collapse collapse show" data-bs-parent="#mainAccordion">
+                    <div class="accordion-body">
+                        <ul>
+                            <li>Создание централизованной системы для сбора и анализа данных о качестве воздуха из различных источников.</li>
+                            <li>Разработка инструментов прогнозирования для предсказания изменений в качестве воздуха на основе исторических данных и метеорологических факторов.</li>
+                            <li>Повышение осведомленности о состоянии окружающей среды и загрязнении воздуха.</li>
+                            <li>Обеспечение доступности информации о качестве воздуха (например через мобильное приложение)</li>
+                            <li>Улучшение качества воздуха на основе полученных данных и прогнозов.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="headingTasks">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTasks">
+                        Задачи
+                    </button>
+                </h2>
+                <div id="collapseTasks" class="accordion-collapse collapse" data-bs-parent="#mainAccordion">
+                    <div class="accordion-body">
+                        <ul>
+                            <li>Разработка архитектуры системы</li>
+                            <li>Создание интерфейсов для сбора данных</li>
+                            <li>Разработка алгоритмов машинного обучения</li>
+                            <li>Интерактивные визуализации</li>
+                            <li>Система уведомлений</li>
+                            <li>Генерация отчетов</li>
+                            <li>Тестирование и отладка системы</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 4P -->
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="heading4P">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse4P">
+                        4P (Product, Price, Place, Promotion)
+                    </button>
+                </h2>
+                <div id="collapse4P" class="accordion-collapse collapse" data-bs-parent="#mainAccordion">
+                    <div class="accordion-body">
+                        <div class="accordion" id="inner4PAccordion">
+                            
+                            <!-- Product -->
+                            <div class="accordion-item">
+                                <h4 class="accordion-header" id="headingProduct">
+                                    <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseProduct">
+                                        Продукт
+                                    </button>
+                                </h4>
+                                <div id="collapseProduct" class="accordion-collapse collapse show" data-bs-parent="#inner4PAccordion">
+                                    <div class="accordion-body">
+                                        <ul>
+                                            <li>Интерфейсы для интеграции с сенсорами и системами мониторинга</li>
+                                            <li>Алгоритмы машинного обучения для предсказания качества воздуха</li>
+                                            <li>Карты и графики, отображающие данные о качестве воздуха</li>
+                                            <li>Уведомления о превышении допустимых норм загрязнения</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Price -->
+                            <div class="accordion-item">
+                                <h4 class="accordion-header" id="headingPrice">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapsePrice">
+                                        Цена
+                                    </button>
+                                </h4>
+                                <div id="collapsePrice" class="accordion-collapse collapse" data-bs-parent="#inner4PAccordion">
+                                    <div class="accordion-body">
+                                        <ul>
+                                            <li>Определить возможности для монетизации, например, через подписку или платные отчеты</li>
+                                            <li>Анализ затрат на разработку и поддержку платформы</li>
+                                            <li>Изучение ценовых моделей похожих проектов для определения конкурентоспособной цены</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Place -->
+                            <div class="accordion-item">
+                                <h4 class="accordion-header" id="headingPlace">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapsePlace">
+                                        Место
+                                    </button>
+                                </h4>
+                                <div id="collapsePlace" class="accordion-collapse collapse" data-bs-parent="#inner4PAccordion">
+                                    <div class="accordion-body">
+                                        <ul>
+                                            <li>Обеспечить доступ к платформе через веб-интерфейс и мобильные приложения</li>
+                                            <li>Обеспечить совместимость с существующими системами и платформами</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Promotion -->
+                            <div class="accordion-item">
+                                <h4 class="accordion-header" id="headingPromotion">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapsePromotion">
+                                        Продвижение
+                                    </button>
+                                </h4>
+                                <div id="collapsePromotion" class="accordion-collapse collapse" data-bs-parent="#inner4PAccordion">
+                                    <div class="accordion-body">
+                                        <ul>
+                                            <li>Разработка стратегии продвижения платформы среди целевых пользователей</li>
+                                            <li>Проведение семинаров и вебинаров для демонстрации функционала системы</li>
+                                            <li>Разработка образовательных материалов о важности мониторинга качества воздуха</li>
+                                            <li>Установление сотрудничества с экологическими организациями для распространения информации о платформе</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Технологический стек -->
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="headingTech">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTech">
+                        Технологический стек
+                    </button>
+                </h2>
+                <div id="collapseTech" class="accordion-collapse collapse" data-bs-parent="#mainAccordion">
+                    <div class="accordion-body">
+                        <ul>
+                            <li>Бекенд: Python (Django/FastAPI), Celery для асинхронных задач</li>
+                            <li>ML: TensorFlow/PyTorch, Scikit-learn, библиотеки для анализа временных рядов (Prophet)</li>
+                            <li>Базы данных: PostgreSQL (основная БД), Redis (кеширование), TimescaleDB (для временных рядов)</li>
+                            <li>Фронтенд: React (веб), React Native (мобильное приложение)</li>
+                            <li>Инфраструктура: Docker/Kubernetes, облачные сервисы (AWS/GCP)</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- SWOT-анализ -->
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="headingSWOT">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSWOT">
+                        SWOT-анализ
+                    </button>
+                </h2>
+                <div id="collapseSWOT" class="accordion-collapse collapse" data-bs-parent="#mainAccordion">
+                    <div class="accordion-body">
+                        <div class="accordion" id="swotAccordion">
+                            
+                            <!-- Strengths -->
+                            <div class="accordion-item">
+                                <h4 class="accordion-header" id="headingStrengths">
+                                    <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseStrengths">
+                                        Strengths (Сильные стороны)
+                                    </button>
+                                </h4>
+                                <div id="collapseStrengths" class="accordion-collapse collapse show" data-bs-parent="#swotAccordion">
+                                    <div class="accordion-body">
+                                        <ul>
+                                            <li>Интеграция разнородных данных: Возможность объединять данные с сенсоров, метеорологических служб и открытых источников, что повышает точность анализа</li>
+                                            <li>Использование ML и AI: Прогнозирование на основе машинного обучения позволяет предсказывать загрязнение с учетом динамических факторов (погода, время суток)</li>
+                                            <li>Доступность информации: Мультиплатформенность (мобильное приложение, веб-дашборды) обеспечивает широкий охват аудитории</li>
+                                            <li>Экологическая направленность: Проект решает социально значимую проблему, что повышает его привлекательность для грантов и партнерств</li>
+                                            <li>Масштабируемость архитектуры: Использование облачных технологий (AWS/GCP) и микросервисов позволяет легко расширять функционал</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Weaknesses -->
+                            <div class="accordion-item">
+                                <h4 class="accordion-header" id="headingWeaknesses">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseWeaknesses">
+                                        Weaknesses (Слабые стороны)
+                                    </button>
+                                </h4>
+                                <div id="collapseWeaknesses" class="accordion-collapse collapse" data-bs-parent="#swotAccordion">
+                                    <div class="accordion-body">
+                                        <ul>
+                                            <li>Зависимость от качества данных: Неточности в показаниях сенсоров или их временная недоступность могут снижать точность прогнозов</li>
+                                            <li>Высокие начальные затраты: Развертывание инфраструктуры, разработка ML-моделей и поддержка датчиков требуют значительных инвестиций</li>
+                                            <li>Сложность интеграции: Подключение к разнородным источникам данных (государственные, коммерческие) может быть бюрократически сложным</li>
+                                            <li>Конкуренция за внимание пользователей: Низкая осведомленность о проблеме загрязнения воздуха в некоторых регионах может замедлить рост аудитории</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Opportunities -->
+                            <div class="accordion-item">
+                                <h4 class="accordion-header" id="headingOpportunities">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOpportunities">
+                                        Opportunities (Возможности)
+                                    </button>
+                                </h4>
+                                <div id="collapseOpportunities" class="accordion-collapse collapse" data-bs-parent="#swotAccordion">
+                                    <div class="accordion-body">
+                                        <ul>
+                                            <li>Партнерства с государством и бизнесом: Внедрение платформы в городские системы экологического мониторинга (например, в рамках "умных городов")</li>
+                                            <li>Экспансия на новые регионы: Расширение географии охвата за счет подключения сенсоров из других стран</li>
+                                            <li>Монетизация через B2B и B2G: Продажа аналитики и прогнозов транспортным компаниям, заводам или муниципалитетам</li>
+                                            <li>Развитие персональных рекомендаций: Интеграция с устройствами IoT (например, умные дома) для автоматической настройки вентиляции или уведомлений</li>
+                                            <li>Повышение экологической грамотности: Образовательные инициативы (вебинары, отчеты) для школ и университетов</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Threats -->
+                            <div class="accordion-item">
+                                <h4 class="accordion-header" id="headingThreats">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThreats">
+                                        Threats (Угрозы)
+                                    </button>
+                                </h4>
+                                <div id="collapseThreats" class="accordion-collapse collapse" data-bs-parent="#swotAccordion">
+                                    <div class="accordion-body">
+                                        <ul>
+                                            <li>Конкуренция с крупными платформами: Риск вытеснения проектами вроде AirVisual или BreezoMeter, которые уже имеют глобальную аудиторию</li>
+                                            <li>Регуляторные ограничения: Проблемы с доступом к данным в странах с жесткими законами о конфиденциальности или экологической отчетности</li>
+                                            <li>Технические сбои: Кибератаки, утечки данных или поломки сенсоров могут подорвать доверие пользователей</li>
+                                            <li>Изменения климатической политики: Снижение финансирования экологических инициатив в случае политических или экономических кризисов</li>
+                                            <li>Ошибки в прогнозах: Неточности ML-моделей (например, из-за редких погодных аномалий) могут привести к потере репутации</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="accordion-item">
+                    <h2 class="accordion-header" id="headingArch">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseArch">
+                            Архитектура
+                        </button>
+                    </h2>
+                    <div id="collapseArch" class="accordion-collapse collapse" data-bs-parent="#mainAccordion">
+                        <div class="accordion-body">
+                            <ul>
+                                <li>Слой данных: Сенсоры → API-шлюзы → БД (сырые данные)</li>
+                                <li>Слой обработки: ETL-пайплайны (Apache Airflow) → ML-модели → Прогнозы</li>
+                                <li>Слой представления: Веб-приложение + мобильное приложение + REST API</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+
+
+                <div class="accordion-item">
+                    <h2 class="accordion-header" id="headingPlan">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapsePlan">
+                            План разработки
+                        </button>
+                    </h2>
+                    <div id="collapsePlan" class="accordion-collapse collapse" data-bs-parent="#mainAccordion">
+                        <div class="accordion-body">
+                            <ul>
+                                <li>Проектирование:
+                                    2 мес
+                                    Спецификация требований, выбор технологий, проектирование архитектуры</li>
+                                <li>Разработка MVP:
+                                    4 мес
+                                    Реализация базового функционала (сбор данных, прогнозирование, мобильное приложение)</li>
+                                <li>Тестирование:
+                                    1 мес
+                                    Load-тесты, проверка точности ML-моделей, исправление багов</li>
+                                
+                                <li>Внедрение:
+                                    1 мес
+                                    Публикация в App Store/Google Play, развертывание на облаке
+                                <li>Поддержка:
+                                    Постоянно
+                                    Мониторинг, обновление моделей, добавление новых функций.</li>  
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="accordion-item">
+                    <h2 class="accordion-header" id="headingBud">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseBud">
+                            Бюджет
+                        </button>
+                    </h2>
+                    <div id="collapseBud" class="accordion-collapse collapse" data-bs-parent="#mainAccordion">
+                        <div class="accordion-body">
+                            <ul>
+                                <li>Разработка: $150 000 (команда из 5 человек: бекенд, фронтенд, ML-инженер, QA, DevOps)</li>
+                                <li>Инфраструктура: $20 000/год (облачные сервисы, хранение данных)</li>
+                                <li>Маркетинг: $10 000 (продвижение приложения, партнерства с эко-организациями)</li>     
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="accordion-item">
+                    <h2 class="accordion-header" id="headingRM">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseRM">
+                            Риски и их минимизация
+                        </button>
+                    </h2>
+                    <div id="collapseRM" class="accordion-collapse collapse" data-bs-parent="#mainAccordion">
+                        <div class="accordion-body">
+                            <ul>
+                                <li>Низкая точность прогнозов: Регулярное обновление ML-моделей, добавление новых фичей</li>
+                                <li>Сбои в работе сенсоров: Резервирование данных, использование открытых источников как fallback</li>
+                                <li>Конкуренция: Акцент на уникальность (гибкие прогнозы, интеграция с городскими службами)</li>     
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="accordion-item">
+                    <h2 class="accordion-header" id="headingD1">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseD0">
+                            Диаграмма целевых пользователей
+                        </button>
+                    </h2>
+                    <div id="collapseD0" class="accordion-collapse collapse" data-bs-parent="#mainAccordion">
+                        <div class="accordion-body">
+                            <ul>
+                            </ul>
+
+                            <img src="00.png" alt="Flowers in Chania">
+
+                        </div>
+                    </div>
+                </div>
+
+                <div class="accordion-item">
+                    <h2 class="accordion-header" id="headingD1">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseD1">
+                            Диаграмма классов
+                        </button>
+                    </h2>
+                    <div id="collapseD1" class="accordion-collapse collapse" data-bs-parent="#mainAccordion">
+                        <div class="accordion-body">
+                            <ul>
+                                Определяет структуру данных, атрибуты, методы и отношения между сущностями
+                            </ul>
+
+                            <img src="1.png" alt="Flowers in Chania">
+
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="accordion-item">
+                    <h2 class="accordion-header" id="headingD2">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseD2">
+                            Диаграмма компонентов
+                        </button>
+                    </h2>
+                    <div id="collapseD2" class="accordion-collapse collapse" data-bs-parent="#mainAccordion">
+                        <div class="accordion-body">
+                            <ul>
+                                Показывает, из каких крупных модулей состоит система и как они взаимодействуют         
+                                </ul>
+
+                                <img src="2.png" alt="Flowers in Chania">
+                            
+                        </div>
+                    </div>
+                </div>
+
+                <div class="accordion-item">
+                    <h2 class="accordion-header" id="headingD3">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseD3">
+                            Диаграмма развертывания
+                        </button>
+                    </h2>
+                    <div id="collapseD3" class="accordion-collapse collapse" data-bs-parent="#mainAccordion">
+                        <div class="accordion-body">
+                            <ul>
+                                Указывает, где физически размещаются компоненты и как они связаны сетью                   
+                        </ul>
+                        <img src="3.png" alt="Flowers in Chania">
+    
+                             </div>
+                    </div>
+                </div>
+
+                <div class="accordion-item">
+                    <h2 class="accordion-header" id="headingD4">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseD4">
+                            Диаграмма композитной структуры
+                        </button>
+                    </h2>
+                    <div id="collapseD4" class="accordion-collapse collapse" data-bs-parent="#mainAccordion">
+                        <div class="accordion-body">
+                            <ul>
+                                Раскрывает внутреннее устройство сложных компонентов                                           </div>
+                            <img src="4.png" alt="Flowers in Chania">
+
+                    </div>
+                </div>
+
+
+                <div class="accordion-item">
+                    <h2 class="accordion-header" id="headingD5">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseD5">
+                            Диаграмма объектов
+                        
+                        </button>
+                    </h2>
+                    <div id="collapseD5" class="accordion-collapse collapse" data-bs-parent="#mainAccordion">
+                        <div class="accordion-body">
+                            <ul>
+                                Иллюстрирует конкретные экземпляры классов, помогая тестировать сценарии
+                            <img src="5.png" alt="Flowers in Chania">
+
+                            </div>
+                </div>
+            </div>
+
+
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="headingD6">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseD6">
+                        Диаграмма пакетов
+                    
+                    </button>
+                </h2>
+                <div id="collapseD6" class="accordion-collapse collapse" data-bs-parent="#mainAccordion">
+                    <div class="accordion-body">
+                        <ul>
+                            Организует классы и компоненты в логические группы упрощая управление кодом
+                            <img src="6.jpeg" alt="Flowers in Chania">
+
+                        
+                        </div>
+            </div>
+            </div>
+
+
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="headingD7">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseD7">
+                        Временная диаграмма
+
+                    </button>
+                </h2>
+                <div id="collapseD7" class="accordion-collapse collapse" data-bs-parent="#mainAccordion">
+                    <div class="accordion-body">
+                        <ul>
+                            Отслеживает изменения состояния объекта во времени                         
+                            <img src="6.png" alt="Flowers in Chania">
+
+                        </div>
+            </div>
+            </div>
+
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="headingD8">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseD8">
+                        Диаграмма обзора взаимодействия                        
+                    </button>
+                </h2>
+                <div id="collapseD8" class="accordion-collapse collapse" data-bs-parent="#mainAccordion">
+                    <div class="accordion-body">
+                        <ul>
+                            Даёт высокоуровневый взгляд на сложные процессы 
+                            <img src="7.png" alt="Flowers in Chania">
+                        </ul>
+
+                        </div>
+            </div>
+            </div>
+
+
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="headingD9">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseD9">
+                        Диаграмма коммуникации
+
+                    </button>
+                </h2>
+                <div id="collapseD9" class="accordion-collapse collapse" data-bs-parent="#mainAccordion">
+                    <div class="accordion-body">
+                        <ul>
+                            Акцентирует связи между объектами в рамках сценария
+                            <img src="8.png" alt="Flowers in Chania">
+                        </ul>
+
+                        </div>
+            </div>
+            </div>
+
+
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="headingD10">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseD10">
+                        Диаграмма состояний
+                    </button>
+                </h2>
+                <div id="collapseD10" class="accordion-collapse collapse" data-bs-parent="#mainAccordion">
+                    <div class="accordion-body">
+                        <ul>
+                            Диаграмма состояний моделирует состояния объекта и переходы между ними
+                            <img src="9.png" alt="Flowers in Chania">
+
+                        </div>
+            </div>
+            </div>
+
+
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="headingD11">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseD11">
+                        Диаграмма состояний
+                    </button>
+                </h2>
+                <div id="collapseD11" class="accordion-collapse collapse" data-bs-parent="#mainAccordion">
+                    <div class="accordion-body">
+                        <ul>
+                            Диаграмма состояний моделирует состояния объекта и переходы между ними
+                            <img src="10.png" alt="Flowers in Chania">
+             
+                        </div>
+            </div>
+            </div>
+
+
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="headingD12">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseD12">
+                        Диаграмма последовательностей
+                    </button>
+                </h2>
+                <div id="collapseD12" class="accordion-collapse collapse" data-bs-parent="#mainAccordion">
+                    <div class="accordion-body">
+                        <ul>
+                             Детализирует порядок взаимодействия объектов   
+                            <img src="11.png" alt="Flowers in Chania">
+                                                  
+                        </div>
+            </div>
+            </div>
+
+
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="headingD13">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseD13">
+                        Диаграмма деятельности
+                    
+                    </button>
+                </h2>
+                <div id="collapseD13" class="accordion-collapse collapse" data-bs-parent="#mainAccordion">
+                    <div class="accordion-body">
+                        <ul>
+                            Диаграмма деятельности моделирует рабочий процесс.
+                            <img src="12.png" alt="Flowers in Chania">
+
+                        </div>
+            </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
